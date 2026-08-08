@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: ci-pipeline
+  namespace: ci-gitops
+spec:
+  tasks:
+    - name: run-ci-task
+      taskRef:
+        name: hello-task

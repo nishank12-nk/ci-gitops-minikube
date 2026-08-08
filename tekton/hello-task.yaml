@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: hello-task
+  namespace: ci-gitops
+spec:
+  steps:
+    - name: hello
+      image: alpine:3.20
+      script: |
+        #!/bin/sh
+        echo "Tekton CI Task Started"
+        echo "NSP CI + GitOps Project"
+        echo "Tekton Task executed successfully"
