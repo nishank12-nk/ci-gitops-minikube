@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: angular-frontend
-          image: angular-frontend:1.0
-          imagePullPolicy: Never
+          image: registry.kube-system.svc.cluster.local/angular-frontend:1.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
 ---

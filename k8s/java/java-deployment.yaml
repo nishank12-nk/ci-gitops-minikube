@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: java-backend
-          image: java-backend:1.0
-          imagePullPolicy: Never
+          image: registry.kube-system.svc.cluster.local/java-backend:1.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
