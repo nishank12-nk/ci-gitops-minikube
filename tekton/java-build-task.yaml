@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: java-build-task
+  namespace: ci-gitops
+spec:
+  steps:
+    - name: build-java-image
+      image: gcr.io/kaniko-project/executor:v1.23.2
+      args:
+        - --dockerfile=java-backend/Dockerfile
+        - --context=dir:///workspace/source
+        - --destination=java-backend:1.0
+        - --insecure
+        - --skip-tls-verify
+  workspaces:
+    - name: source

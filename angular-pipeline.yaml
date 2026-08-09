@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: angular-pipeline
+  namespace: ci-gitops
+spec:
+  workspaces:
+    - name: source
+  tasks:
+    - name: build-angular
+      taskRef:
+        kind: Task
+        name: angular-build-task
+      workspaces:
+        - name: source
+          workspace: source

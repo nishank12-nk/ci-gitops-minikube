@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: java-pipeline
+  namespace: ci-gitops
+spec:
+  workspaces:
+    - name: source
+  tasks:
+    - name: build-java
+      taskRef:
+        name: java-build-task
+      workspaces:
+        - name: source
+          workspace: source

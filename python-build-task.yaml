@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: python-build-task
+  namespace: ci-gitops
+spec:
+  workspaces:
+    - name: source
+  steps:
+    - name: build-python-image
+      image: gcr.io/kaniko-project/executor:v1.23.2
+      args:
+        - --dockerfile=Dockerfile
+        - --context=dir:///workspace/source/python-backend
+        - --destination=registry.kube-system.svc.cluster.local/python-backend:1.0
+        - --insecure
+        - --skip-tls-verify

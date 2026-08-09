@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: angular-build-task
+  namespace: ci-gitops
+spec:
+  workspaces:
+    - name: source
+  steps:
+    - name: build-angular-image
+      image: gcr.io/kaniko-project/executor:v1.23.2
+      args:
+        - --dockerfile=Dockerfile
+        - --context=dir:///workspace/source/angular-frontend
+        - --destination=registry.kube-system.svc.cluster.local/angular-frontend:1.0
+        - --insecure
+        - --skip-tls-verify

@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: python-pipeline
+  namespace: ci-gitops
+spec:
+  workspaces:
+    - name: source
+  tasks:
+    - name: build-python
+      taskRef:
+        kind: Task
+        name: python-build-task
+      workspaces:
+        - name: source
+          workspace: source
